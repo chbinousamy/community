@@ -20,6 +20,10 @@ jobs:
         run: |
           apt update -y
           apt install -y rsync docker.io
+          git clone https://github.com/docker/buildx.git
+          cd buildx
+          make install
+          cd ../
           git clone --recurse-submodules --branch=v1.28.1 --depth=1 https://github.com/kubernetes/kubernetes
       -
         name: "Build kubernetes node-image"
