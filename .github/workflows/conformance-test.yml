@@ -49,11 +49,13 @@ jobs:
       -
         name: "Create the e2e Kubernetes binary"
         run: |
+          pwd
           make WHAT="cmd/kubectl"
           make WHAT="vendor/github.com/onsi/ginkgo/ginkgo"
           make WHAT="test/e2e/e2e.test"
+          pwd
           echo "find e2e.test"
-          find . -name "e2e.test"
+          find . -name "e2e*"
       -
         name: "Run the tests"
         run: |
