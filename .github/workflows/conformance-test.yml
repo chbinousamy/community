@@ -9,7 +9,7 @@ on:
 
 jobs:
   conformance-tests: # <- Nom du job
-    runs-on: antibois
+    runs-on: vrunner-antibois
     container: golang
     steps:  
       - 
