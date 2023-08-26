@@ -24,6 +24,7 @@ jobs:
       -
         name: "Build kubernetes node-image"
         run: |
+          apt install rsync
           cd ~/src/k8s.io/kubernetes
           go install sigs.k8s.io/kind@v0.20.0
           kind build node-image
