@@ -16,14 +16,19 @@ jobs:
         name: "Checkout"
         uses: actions/checkout@v3
       -
-        name: "Clone Kubernetes"
+        name: "Update"
         run: |
           apt update -y
-          apt install -y rsync docker.io
-          git clone https://github.com/docker/buildx.git
-          cd buildx
-          make install
-          cd ../
+          apt install -y rsync
+      -
+        name: Set up QEMU
+        uses: docker/setup-qemu-action@v2
+      -
+        name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v2
+      -
+        name: "Clone Kubernetes"
+        run: |
           git clone --recurse-submodules --branch=v1.28.1 --depth=1 https://github.com/kubernetes/kubernetes
       -
         name: "Build kubernetes node-image"
