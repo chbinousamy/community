@@ -49,9 +49,9 @@ jobs:
       -
         name: "Create the e2e Kubernetes binary"
         run: |
-          make all WHAT=cmd/kubectl
-          make all WHAT=vendor/github.com/onsi/ginkgo/ginkgo
-          make all WHAT=test/e2e/e2e.test
+          make WHAT=cmd/kubectl
+          make WHAT=vendor/github.com/onsi/ginkgo/ginkgo
+          make WHAT=test/e2e/e2e.test
       -
         name: "Execute thetests"
         run: |
