@@ -19,7 +19,7 @@ jobs:
         name: "Clone Kubernetes"
         run: |
           apt update -y
-          apt install -y rsync
+          apt install -y rsync docker.io
           git clone --recurse-submodules --branch=v1.28.1 --depth=1 https://github.com/kubernetes/kubernetes
       -
         name: "Build kubernetes node-image"
