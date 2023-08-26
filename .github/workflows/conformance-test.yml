@@ -24,6 +24,7 @@ jobs:
         run: |
           go install sigs.k8s.io/kind@v0.20.0
           cd kubernetes
+          apt install rsync
           kind build node-image
           docker images
       - 
