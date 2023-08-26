@@ -23,7 +23,8 @@ jobs:
           git clone --recurse-submodules --branch=v1.28.1 --depth=1 https://github.com/kubernetes/kubernetes
       -
         name: "Install kind"
-        run: |          
+        run: |       
+          cd ~/src/k8s.io/kubernetes
           go install sigs.k8s.io/kind@v0.20.0
           kind build node-image
           cat << EOF > kind-config.yaml
