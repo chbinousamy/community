@@ -22,11 +22,15 @@ jobs:
           cd ~/src/k8s.io
           git clone --recurse-submodules --branch=v1.28.1 --depth=1 https://github.com/kubernetes/kubernetes
       -
-        name: "Install kind"
-        run: |       
+        name: "Build kubernetes node-image"
+        run: |
           cd ~/src/k8s.io/kubernetes
           go install sigs.k8s.io/kind@v0.20.0
           kind build node-image
+          docker images
+      - 
+        name: "Create the cluster"
+        run: |
           cat << EOF > kind-config.yaml
           # necessary for conformance
           kind: Cluster
@@ -39,19 +43,12 @@ jobs:
           - role: worker
           - role: worker
           EOF
-      - 
-        name: "Create the cluster"
-        run: | 
           KUBECONFIG="${HOME}/.kube/kind-test-config"
           echo "KUBECONFIG=${HOME}/.kube/kind-test-config" >> GITHUB_ENV
-          kind create cluster --config kind-config.yaml --image kindest/node:v1.28.0 -v4
-          kubectl get nodes
-          kubectl cluster-info --context kind-kind
+          kind create cluster --config kind-config.yaml --image kindest/node:latest -v4
       -
         name: "Create the e2e Kubernetes binary"
         run: |
-          kubectl get nodes
-          kubectl cluster-info --context kind-kind
           make WHAT="test/e2e/e2e.test"
       -
         name: "Execute thetests"
