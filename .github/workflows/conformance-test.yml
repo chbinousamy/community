@@ -9,8 +9,7 @@ on:
 
 jobs:
   conformance-tests: # <- Nom du job
-    runs-on: ubuntu-latest
-    #runs-on: k8s-builder
+    runs-on: antibois
     steps:  
       - 
         name: "Checkout"
