@@ -10,7 +10,7 @@ on:
 jobs:
   conformance-tests: # <- Nom du job
     runs-on: antibois
-    #container: ubuntu
+    container: golang
     steps:  
       - 
         name: "Checkout"
