@@ -50,6 +50,8 @@ jobs:
         name: "Create the e2e Kubernetes binary"
         run: |
           pwd
+          cd ~/src/k8s.io/kubernetes
+          pwd
           make WHAT="cmd/kubectl"
           make WHAT="vendor/github.com/onsi/ginkgo/ginkgo"
           make WHAT="test/e2e/e2e.test"
