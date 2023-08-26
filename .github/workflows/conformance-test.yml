@@ -18,13 +18,14 @@ jobs:
       -
         name: "Clone Kubernetes"
         run: |
+          apt update
+          apt install rsync
           git clone --recurse-submodules --branch=v1.28.1 --depth=1 https://github.com/kubernetes/kubernetes
       -
         name: "Build kubernetes node-image"
         run: |
           go install sigs.k8s.io/kind@v0.20.0
           cd kubernetes
-          apt install rsync
           kind build node-image
           docker images
       - 
