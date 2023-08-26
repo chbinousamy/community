@@ -19,7 +19,7 @@ jobs:
         name: "Update"
         run: |
           apt update -y
-          apt install -y rsync
+          apt install -y rsync docker.io
       -
         name: Set up QEMU
         uses: docker/setup-qemu-action@v2
