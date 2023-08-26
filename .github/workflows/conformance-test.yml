@@ -49,11 +49,11 @@ jobs:
       -
         name: "Create the e2e Kubernetes binary"
         run: |
-          make WHAT=cmd/kubectl
-          make WHAT=vendor/github.com/onsi/ginkgo/ginkgo
-          make WHAT=test/e2e/e2e.test
+          make WHAT="cmd/kubectl"
+          make WHAT="vendor/github.com/onsi/ginkgo/ginkgo"
+          make WHAT="test/e2e/e2e.test"
       -
-        name: "Execute thetests"
+        name: "Run the tests"
         run: |
           kubectl get nodes
           kubectl cluster-info --context kind-kind
