@@ -22,6 +22,7 @@ jobs:
           # For ARM64
           [ $(uname -m) = aarch64 ] && curl -Lo ./kind https://kind.sigs.k8s.io/dl/v0.20.0/kind-linux-arm64
           chmod +x ./kind
+          sudo mv ./kind /usr/local/bin/kind
       - 
         name: "Checkout"
         uses: actions/checkout@v3
@@ -38,7 +39,6 @@ jobs:
       -
         name: "Build kubernetes node-image"
         run: |
-          sudo mv ./kind /usr/local/bin/kind
           cd kubernetes
           kind build node-image
           docker images
