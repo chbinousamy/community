@@ -41,6 +41,7 @@ jobs:
         name: "Build kubernetes node-image"
         run: |
           cd kubernetes
+          kind build node-image
       - 
         name: "Create the cluster"
         run: |
