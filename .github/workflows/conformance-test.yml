@@ -34,9 +34,7 @@ jobs:
         name: "Build kubernetes node-image"
         run: |
           cd kubernetes
-          kind delete clusters --all
-          kind build node-image
-          docker images
+        #  kind build node-image
       - 
         name: "Create the cluster"
         run: |
@@ -53,21 +51,19 @@ jobs:
           - role: worker
           - role: worker
           EOF
+
           KUBECONFIG="${HOME}/.kube/kind-test-config"
           echo "KUBECONFIG=${HOME}/.kube/kind-test-config" >> GITHUB_ENV
+
+          kind delete clusters --all
           kind create cluster --config kind-config.yaml --image kindest/node:latest -v4
       -
         name: "Create the e2e Kubernetes binary"
         run: |
-          pwd
           cd kubernetes
-          pwd
           make WHAT="cmd/kubectl"
           make WHAT="vendor/github.com/onsi/ginkgo/ginkgo"
           make WHAT="test/e2e/e2e.test"
-          pwd
-          echo "find e2e.test"
-          find . -name "e2e*"
       -
         name: "Run the tests"
         run: |
