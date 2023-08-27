@@ -10,7 +10,7 @@ on:
 jobs:
   conformance-tests: # <- Nom du job
     runs-on: vrunner-antibois
-    container: golang
+    # container: golang
     steps:  
       - 
         name: "Checkout"
@@ -19,7 +19,7 @@ jobs:
         name: "Update"
         run: |
           apt update -y
-          apt install -y rsync docker.io
+        #  apt install -y rsync docker.io
       -
         name: Set up QEMU
         uses: docker/setup-qemu-action@v2
