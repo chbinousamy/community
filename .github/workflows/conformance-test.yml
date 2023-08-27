@@ -13,6 +13,12 @@ jobs:
     # container: golang
     steps:
       -
+        name: "Runner CPU, Mem, Disk, Net"
+        run: |
+          lscpu
+          free -h
+          df
+      -
         name: "Update"
         run: |
           sudo apt update -y
