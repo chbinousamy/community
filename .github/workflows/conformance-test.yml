@@ -17,7 +17,7 @@ jobs:
         run: |
           lscpu
           free -h
-          df
+          df -h
       -
         name: "Update"
         run: |
