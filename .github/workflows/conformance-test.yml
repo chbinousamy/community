@@ -56,6 +56,7 @@ jobs:
           echo "KUBECONFIG=${HOME}/.kube/kind-test-config" >> GITHUB_ENV
 
           kind delete clusters --all
+          docker system prune --all --force
           kind create cluster --config kind-config.yaml --image kindest/node:latest -v4
       -
         name: "Create the e2e Kubernetes binary"
