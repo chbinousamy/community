@@ -39,6 +39,7 @@ jobs:
       - 
         name: "Create the cluster"
         run: |
+          cd kubernetes
           cat << EOF > kind-config.yaml
           # necessary for conformance
           kind: Cluster
@@ -51,8 +52,6 @@ jobs:
           - role: worker
           - role: worker
           EOF
-          kpath = find . -name "kind"
-          sudo mv $kpath /usr/local/bin/kind
           KUBECONFIG="${HOME}/.kube/kind-test-config"
           echo "KUBECONFIG=${HOME}/.kube/kind-test-config" >> GITHUB_ENV
           kind create cluster --config kind-config.yaml --image kindest/node:latest -v4
