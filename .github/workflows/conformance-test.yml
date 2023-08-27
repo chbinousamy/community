@@ -11,7 +11,12 @@ jobs:
   conformance-tests: # <- Nom du job
     runs-on: vrunner-antibois
     # container: golang
-    steps:  
+    steps:
+      -
+        name: "Update"
+        run: |
+          sudo apt update -y
+          sudo apt install -y golang
       - 
         name: "Checkout"
         uses: actions/checkout@v3
