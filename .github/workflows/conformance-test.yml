@@ -33,8 +33,8 @@ jobs:
       -
         name: "Build kubernetes node-image"
         run: |
-          go install sigs.k8s.io/kind@v0.20.0
           cd kubernetes
+          go install sigs.k8s.io/kind@v0.20.0
           kind build node-image
           docker images
       - 
